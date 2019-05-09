@@ -1,0 +1,32 @@
+body
+{
+	background-color: #ffffff;
+	color: #000000;
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+}
+
+
+#lobby
+{
+	font-size: 15px;
+	width: 25%;
+	float:left;
+	
+	
+}
+
+#korytarz
+{
+	font-size: 15px;
+	width: 25%;
+	float:left;
+	
+}
+
+#pokoj_tv
+{
+	font-size: 15px;
+	width: 25%;
+	float:down;
+	

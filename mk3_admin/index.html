@@ -1,0 +1,530 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<title>MK III ADMIN</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	
+</head>
+
+<body>
+
+	<input type="checkbox" id="Door1_2" name="Door1_2" disabled="disabled"> Drzwi_1_2
+	<input type="checkbox" id="Door1_2_m" name="Door1_2_m" onclick="door_manage(1)"> Drzwi_1_2_blokada
+	<br>
+	<input type="checkbox" id="Door2_3" name="Door2_3" disabled="disabled"> Drzwi_2_3
+	<input type="checkbox" id="Door2_3_m" name="Door2_3_m" onclick="door_manage(2)"> Drzwi_2_3_blokada
+	<br>
+        <input type="checkbox" id="Door_dpk" name="Door_dpk" disabled="disabled"> Drzwi_DPK
+	<input type="checkbox" id="Door_dpk_m" name="Door_dpk_m" onclick="door_manage(3)"> Drzwi_DPK_blokada
+	<br>
+        <input type="checkbox" id="Door3_4a" name="Door3_4a" disabled="disabled"> Drzwi_3_4a
+	<input type="checkbox" id="Door3_4a_m" name="Door3_4a_m" onclick="door_manage(4)"> Drzwi_3_4a_blokada
+	<br>
+	<input type="checkbox" id="Door3_4b" name="Door3_4b" disabled="disabled"> Drzwi_3_4b
+	<input type="checkbox" id="Door3_4b_m" name="Door3_4b_m" onclick="door_manage(5)"> Drzwi_3_4b_blokada
+	<br>
+        <input type="checkbox" id="grate" name="grate" disabled="disabled"> Drzwi_przesowne
+	<input type="checkbox" id="grate_m" name="grate_m" onclick="door_manage(6)"> Drzwi_przesowne
+        <input type="checkbox" id="grate_l" name="grate_l" onclick="door_manage(7)"> Drzwi_przesowne blokada
+        <br>
+	<input type="checkbox" id="door_trunc" name="door_trunc" disabled="disabled"> Drzwi_trunc
+        <input type="checkbox" id="door_trunc_m" name="door_trunc_m" onclick="door_manage(8)"> Drzwi trunc
+	<br>
+
+	<input type="checkbox" id="Door_p1" name="Door_p1" disabled="disabled"> Krata_p1<br>
+	<input type="checkbox" id="Door_p2" name="Door_p2" disabled="disabled"> Krata_p2<br>
+ 	<input type="checkbox" id="power" name="power" disabled="disabled"> Power<br>
+        <input type="checkbox" id="jack" name="jack" disabled="disabled"> Jack<br>
+	<input type="checkbox" id="keybox" name="keybox" disabled="disabled"> Keybox<br>
+ 	<input type="checkbox" id="usb" name="usb" disabled="disabled"> USB_BOX<br>
+	<input type="checkbox" id="touchR" name="touchR" disabled="disabled"> TouchR<br>
+        <input type="checkbox" id="touchL" name="touchL" disabled="disabled"> TouchL<br>
+	<input type="checkbox" id="wire" name="wire" disabled="disabled"> Wire<br>
+
+
+<script src="./browserMqtt.js"></script>
+<script>
+
+var client = mqtt.connect('ws://192.168.2.10:1900')
+ client.subscribe("doors/door1_2/state")
+ client.subscribe("doors/door1_2/control")
+ client.subscribe("doors/door2_3/state")
+ client.subscribe("doors/door2_3/control")
+ client.subscribe("doors/door3_4a/state")
+ client.subscribe("doors/door3_4a/control")
+ client.subscribe("doors/door3_4b/state")
+ client.subscribe("doors/door3_4b/control")
+ client.subscribe("doors/door_dpk/state")
+ client.subscribe("doors/door_dpk/control")
+ client.subscribe("doors/grate/state")
+ client.subscribe("doors/door_p1/state")
+ client.subscribe("doors/door_p2/state")
+ client.subscribe("power/state")
+ client.subscribe("jack/state")
+ client.subscribe("keybox/state")
+ client.subscribe("usb/state")
+ client.subscribe("touch/r/state")
+ client.subscribe("touch/l/state")
+ client.subscribe("wire/state")
+ client.subscribe("doors/grate_lock/control")
+ client.subscribe("doors/grate/control")
+ client.subscribe("doors/door_trunc/contro")
+
+ var napis="";
+ var i=0;
+
+  function read_message(){
+
+			  client.on("message", function (topic, payload) {
+ 
+									   if(topic=="doors/door1_2/state")
+												{
+													if(payload=="1")
+															{
+															  document.getElementById("Door1_2").checked = true;
+															}  else
+															{
+															  document.getElementById("Door1_2").checked = false;
+															}
+													
+												}
+
+
+									   if(topic=="doors/door1_2/control")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door1_2_m").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door1_2_m").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+									  if(topic=="doors/door2_3/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door2_3").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door2_3").checked = false;
+                                                                                                                  	}
+												}
+
+									  if(topic=="doors/door2_3/control")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door2_3_m").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door2_3_m").checked = false;
+                                                                                                                        }
+                                                                                                }
+
+									  if(topic=="doors/door3_4a/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door3_4a").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door3_4a").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+ 									   if(topic=="doors/door3_4a/control")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door3_4a_m").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door3_4a_m").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+									   if(topic=="doors/door3_4b/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door3_4b").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door3_4b").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+									    if(topic=="doors/door3_4b/control")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door3_4b_m").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door3_4b_m").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+
+
+									  if(topic=="doors/door_dpk/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door_dpk").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door_dpk").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+ 									 if(topic=="doors/door_dpk/control")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door_dpk_m").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door_dpk_m").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+									   if(topic=="doors/grate/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("grate").checked = true;
+															  if(document.getElementById("grate_l").checked == true)
+															  {
+															     document.getElementById("grate_m").disabled=true;
+															  }
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("grate").checked = false;
+                                                                                                                        }
+												}
+
+									    if(topic=="doors/door_p1/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door_p1").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door_p1").checked = false;
+                                                                                                                        }
+
+                                                                                                
+                                                                                                }
+
+									      if(topic=="doors/door_p2/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door_p2").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("Door_p2").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+									      if(topic=="power/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("power").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("power").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+									      if(topic=="jack/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("jack").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("jack").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+									       if(topic=="keybox/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("keybox").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("keybox").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+
+
+									  	 if(topic=="usb/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("usb").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("usb").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+
+
+                                                                                 if(topic=="touch/r/state")
+                                                                                                {
+                                                                                                        if(payload=="0")
+                                                                                                                        {
+                                                                                                                          document.getElementById("touchR").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("touchR").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+
+                                                                                 if(topic=="touch/l/state")
+                                                                                                {
+                                                                                                        if(payload=="0")
+                                                                                                                        {
+                                                                                                                          document.getElementById("touchL").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("touchL").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+                                                                                                
+
+
+
+										 if(topic=="wire/state")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("wire").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("wire").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+                                                                                 if(topic=="doors/grate_lock/control")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("grate_l").checked = true;
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("grate_l").checked = false;
+															  document.getElementById("grate_m").disabled = false;
+                                                                                                                        }
+
+                                                                                                }
+
+
+												if(topic=="doors/grate/control")
+                                                                                                {
+                                                                                                        if(payload=="1")
+                                                                                                                        {
+                                                                                                                          document.getElementById("grate_m").checked = true;
+															  if(document.getElementById("grate_l").checked == true)
+															  {
+															   document.getElementById("grate_m").disabled = true;
+															  }
+                                                                                                                        }  else
+                                                                                                                        {
+                                                                                                                          document.getElementById("grate_m").checked = false;
+                                                                                                                        }
+
+                                                                                                }
+
+
+
+
+
+						  			  }
+
+)
+
+}
+
+
+
+
+function send_mqtt(temat, wiad)
+  {
+   var client = mqtt.connect('ws://192.168.2.10:1900')
+   client.on("connect", function() { 
+   				      client.publish(temat, wiad) 
+				      client.on("packetsend", client.end());
+   				      client.end()
+   				    }) 
+  }
+
+
+function door_manage(number)
+{ 
+ if(number==1)
+ {
+  if(document.getElementById("Door1_2_m").checked == true) 
+  {
+   send_mqtt("doors/door1_2/control","1");
+  } else 
+  {
+   send_mqtt("doors/door1_2/control","0");
+  }
+ }
+  if(number==2)
+ {
+  if(document.getElementById("Door2_3_m").checked == true)
+  {
+   send_mqtt("doors/door2_3/control","1");
+  } else
+  {
+   send_mqtt("doors/door2_3/control","0");
+  }
+ }
+
+ if(number==3)
+ {
+  if(document.getElementById("Door_dpk_m").checked == true)
+  {
+   send_mqtt("doors/door_dpk/control","1");
+  } else
+  {
+   send_mqtt("doors/door_dpk/control","0");
+  }
+ }
+
+ if(number==4)
+ {
+  if(document.getElementById("Door3_4a_m").checked == true)
+  {
+   send_mqtt("doors/door3_4a/control","1");
+  } else
+  {
+   send_mqtt("doors/door3_4a/control","0");
+  }
+ }
+
+ if(number==5)
+ {
+  if(document.getElementById("Door3_4b_m").checked == true)
+  {
+   send_mqtt("doors/door3_4b/control","1");
+  } else
+  {
+   send_mqtt("doors/door3_4b/control","0");
+  }
+ }
+
+ if(number==6)
+ {
+  if(document.getElementById("grate_m").checked == true)
+  {
+   send_mqtt("doors/grate/control","1");
+  } else
+  {
+   send_mqtt("doors/grate/control","0");
+  }
+ }
+
+ if(number==7)
+ {
+  if(document.getElementById("grate_l").checked == true)
+  {
+   send_mqtt("doors/grate_lock/control","1");
+  } else
+  {
+   send_mqtt("doors/grate_lock/control","0");
+   document.getElementById("grate_m").disabled=false;
+  }
+
+if(number==8)
+ {
+  if(document.getElementById("door_trunc_m").checked == true)
+  {
+   send_mqtt("doors/door_trunc/control","1");
+  } else
+  {
+   send_mqtt("doors/door_trunc/control","0");
+   document.getElementById("door_trunc_m").disabled=false;
+  }
+
+ }
+
+
+
+}
+
+function add_char(znak)
+{
+  if(znak == "c") {i=0; 
+		   napis="";
+		   document.getElementById("window").innerHTML = "Enter password...";
+		   } else
+  if(znak == "s") {
+		   send_mqtt("text",napis); 
+		   i=0; 
+		   napis="";
+		   document.getElementById("window").innerHTML = "Enter password...";
+		   } else
+  if(i < 10)
+          { napis+=znak; 
+	    i++;
+	    document.getElementById("window").innerHTML = napis;
+ 	  }
+
+}
+
+function shadowing(parameter,state)
+{
+if(state==1){
+  var x = document.getElementById(parameter);
+  x.style.display = "none";
+}
+
+if(state==0)
+{
+  var x = document.getElementById(parameter);
+  x.style.display = "block";
+}
+
+}
+
+function clear_all()
+{
+ shadowing('container',0);
+ shadowing('alarm',1);
+ shadowing('fingerprint',1);
+}
+  setInterval(read_message,1000);
+
+</script>	
+	
+	
+</body>
+
+</html>
+	

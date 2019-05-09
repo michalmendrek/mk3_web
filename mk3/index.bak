@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<title>MK III</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,900&amp;subset=latin-ext" rel="stylesheet">
+	
+</head>
+
+<body onload="clear_all()">
+
+	<div id="alarm"><img src="img/warning.gif" /></div>
+
+	<div id="fingerprint"><img src="img/fingerprint.jpg" height="700" /></div>
+
+
+	<div id="container">
+	
+		<div id="keypad" class="rectangle">KEYPAD<br><br>
+		
+		
+			<div id="window">Enter password...</div>
+		
+			<div class="button"><a href="javascript:add_char('1')" class="tilelink">1</a></div>
+			<div class="button"><a href="javascript:add_char('2')" class="tilelink">2</a></div>
+			<div class="button"><a href="javascript:add_char('3')" class="tilelink">3</a></div>
+			<div style="clear: both;"></div>
+			
+			<div class="button"><a href="javascript:add_char('4')" class="tilelink">4</a></div>
+			<div class="button"><a href="javascript:add_char('5')" class="tilelink">5</a></div>
+			<div class="button"><a href="javascript:add_char('6')" class="tilelink">6</a></div>
+			<div style="clear: both;"></div>
+			
+			<div class="button"><a href="javascript:add_char('7')" class="tilelink">7</a></div>
+			<div class="button"><a href="javascript:add_char('8')" class="tilelink">8</a></div>
+			<div class="button"><a href="javascript:add_char('9')" class="tilelink">9</a></div>
+			<div style="clear: both;"></div>
+			
+			<div class="clr-button"><a href="javascript:add_char('c')" class="tilelink">clr</a></div>
+			<div class="button"><a href="javascript:add_char('0')" class="tilelink">0</a></div>
+			<div class="ok-button"><a href="javascript:add_char('s')" class="tilelink">ok</a></div>
+			<div style="clear: both;"></div>
+		
+		<div style="float: left;"></div>
+		
+		</div>
+		
+		
+		<div id="cinema" class="rectangle">CAMERA VIEW<br><br>
+		
+		
+			<div id="movie1" class="movie"><a href="javascript:send_mqtt('display/movies','movie1')"><img src="img/video1.png" /></div>
+			<div id="movie2" class="movie"><a href="javascript:send_mqtt('display/movies','movie2')"><img src="img/video2.png" /></div>
+			<div id="movie3" class="movie"><a href="javascript:send_mqtt('display/movies','movie3')"><img src="img/video3.png" /></div>
+			<div id="livestream" class="movie"><img src="img/video4.png" /></div>
+		
+		
+		</div>
+		
+		
+		<div style="clear: both;"></div>
+	
+		<div id="footer">// 80dots</div>
+
+	</div>
+
+<script src="./browserMqtt.js"></script>
+<script>
+
+var client = mqtt.connect('ws://192.168.2.10:1900')
+ client.subscribe("hide")
+ client.subscribe("unhide")
+ var napis="";
+ var i=0;
+
+  function read_message(){
+
+			  client.on("message", function (topic, payload) {
+ 
+									   if(topic=="hide")
+												{
+													var x = document.getElementById(payload);
+													x.style.display = "none";
+													
+												}
+										if(topic=="unhide")
+												{
+													var x = document.getElementById(payload);
+													x.style.display = "block";
+												}
+
+						  			  }
+
+)
+
+}
+
+
+
+
+function send_mqtt(temat, wiad)
+  {
+   var client = mqtt.connect('ws://192.168.2.10:1900')
+   client.on("connect", function() { 
+   				      client.publish(temat, wiad) 
+				      client.on("packetsend", client.end());
+   				      client.end()
+   				    })
+ 
+  }
+
+function add_char(znak)
+{
+  if(znak == "c") {i=0; 
+		   napis="";
+		   document.getElementById("window").innerHTML = "Enter password...";
+		   } else
+  if(znak == "s") {
+		   send_mqtt("text",napis); 
+		   i=0; 
+		   napis="";
+		   document.getElementById("window").innerHTML = "Enter password...";
+		   } else
+  if(i < 10)
+          { napis+=znak; 
+	    i++;
+	    document.getElementById("window").innerHTML = napis;
+ 	  }
+
+}
+
+function shadowing(parameter,state)
+{
+if(state==1){
+  var x = document.getElementById(parameter);
+  x.style.display = "none";
+}
+
+if(state==0)
+{
+  var x = document.getElementById(parameter);
+  x.style.display = "block";
+}
+
+}
+
+function clear_all()
+{
+ shadowing('container',0);
+ shadowing('alarm',1);
+ shadowing('fingerprint',1);
+ shadowing('livestream',1);
+}
+  setInterval(read_message,1000);
+
+</script>	
+	
+	
+</body>
+
+</html>
+	

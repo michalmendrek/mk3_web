@@ -1,0 +1,142 @@
+body
+{
+	background-color: #000000;
+	color: #ffffff;
+	font-family: 'Lato', sans-serif;
+	font-size: 20px;
+}
+
+#alarm
+{
+	width: 996px;
+	margin-top: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#fingerprint
+{
+	width: 996px;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#container
+{
+	width: 996px;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.rectangle
+{
+	width: 498px;
+	text-align: center;
+	float: left;
+}
+
+.movie
+{
+	width: 498px;
+	height: 150px;
+}
+
+.button
+{
+	float: left;
+	text-align: center;
+	background-color: #cdcdcd;
+	border: 5px solid black;
+	font-size: 50px;
+	width: 155px;
+	height: 115px;
+}
+
+a.tilelink
+{
+	color: #ffffff;
+	display: block;
+	width: 155px;
+	height: 115px;
+	border: 5px solid black;
+	text-decoration: none;
+}
+
+.button:hover
+{
+	float: left;
+	text-align: center;
+	background-color: #ababab;
+	border: 5px solid black;
+	font-size: 50px;
+	color: #000000;
+	width: 155px;
+	height: 115px;
+}
+
+.clr-button
+{
+	width: 155px;
+	height: 115px;
+	float: left;
+	text-align: center;
+	background-color: #ff0000;
+	border: 5px solid black;
+	font-size: 50px;
+}
+
+.clr-button:hover
+{
+	width: 155px;
+	height: 115px;
+	float: left;
+	text-align: center;
+	background-color: #dd0000;
+	border: 5px solid black;
+	color: #000000;
+}
+
+.ok-button
+{
+	width: 155px;
+	height: 115px;
+	float: left;
+	text-align: center;
+	background-color: #00c30e;
+	border: 5px solid black;
+	font-size: 50px;
+}
+
+.ok-button:hover
+{
+	width: 155px;
+	height: 115px;
+	float: left;
+	text-align: center;
+	background-color: #00a10c;
+	border: 5px solid black;
+	font-size: 50px;
+	color: #000000;
+}
+
+#window
+{
+	width: 480px;
+	height: 100px;
+	color: #000000;
+	border: 10px solid black;
+	background-color: white;
+}
+
+#footer
+{
+	margin-top: 20px;
+	width: 996px;
+	color: #727272;
+	text-align: center;
+	font-size: 15px;
+}

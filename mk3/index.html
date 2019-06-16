@@ -13,6 +13,8 @@
 <body onload="clear_all()">
 
 	<div id="alarm"><img src="img/warning.gif" /></div>
+	<div id="quest4"><img src="img/4_p.jpg" height="150" width="150" /></div>
+	<div id="quest5"><img src="img/5_p.jpg" height="150" width="150" /></div>
 
 	<div id="fingerprint"><img src="img/fingerprint.jpg" height="700" /></div>
 
@@ -151,6 +153,8 @@ if(state==0)
 function clear_all()
 {
  shadowing('container',0);
+ shadowing('quest4',0);
+ shadowing('quest5',1);
  shadowing('alarm',1);
  shadowing('fingerprint',1);
  shadowing('livestream',1);

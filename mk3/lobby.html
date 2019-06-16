@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<<body bgcolor="#000000" onload="clear_all()">
+
+<br><br> 
+<div id="live">
+  <img src="http://192.168.2.11:9090/?action=stream" height="400" width="1100"><br><br>
+</div>
+
+<video id="vid" width="1100" height="500">
+   <source src="videos/Final1.F.mp4" type="video/mp4">
+</video>
+
+
+<script>
+
+function shadowing(name,state)
+{
+
+ var x = document.getElementById(name);
+ if(state==1)
+  {
+    x.style.display="none";
+  }
+
+ if(state==0)
+  {
+   x.style.display="block";
+  }
+
+
+}
+
+
+function play_video()
+{
+  var vid = document.getElementById("vid"); 
+  vid.play();
+
+}
+
+function clear_all()
+{
+  shadowing('vid',0);
+  shadowing('live',0);
+
+ 
+}
+</script>
+
+</body>
+</html>
+

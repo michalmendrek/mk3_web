@@ -12,13 +12,13 @@
 
 <body onload="clear_all()">
 
-	<div id="alarm"><img src="img/warning.gif" /></div>
-	<div id="quest4"><img src="img/4_p.jpg" height="150" width="150" /></div>
-	<div id="quest5"><img src="img/5_p.jpg" height="150" width="150" /></div>
+	<div id="alarm" ><img  src="img/warning.gif" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="quest4"><img src="img/4_p.jpg" height="200" width="200" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="quest5"><img src="img/5_p.jpg" height="200" width="200" /></div>
 
 	<div id="fingerprint"><img src="img/fingerprint.jpg" height="700" /></div>
 
-	<div id="ventilator" class="button"><a href="javascript:send_mqtt('display_ventilator/control','0')"><img src="img/ventilator.img"  height="100" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="ventilator"  ><a href="javascript:send_mqtt('display_ventilator/control','0')"><img src="img/venticon.png" width="200" height="200" /></div>
 
 	<div id="container">
 	
@@ -58,7 +58,7 @@
 			<div id="movie1" class="movie"><a href="javascript:send_mqtt('display/movies','movie1')"><img src="img/1_p.jpg" /></div>
 			<div id="movie2" class="movie"><a href="javascript:send_mqtt('display/movies','movie2')"><img src="img/2_p.jpg" /></div>
 			<div id="movie3" class="movie"><a href="javascript:send_mqtt('display/movies','movie3')"><img src="img/3_p.jpg" /></div>
-			<div id="livestream" class="movie"><img src=http://192.168.2.10:9090/?action=stream /></div>
+			<div id="livestream" class="movie"><img src=http://192.168.2.10:9090/?action=stream height=300 width=400 /></div>
 		
 		
 		</div>
@@ -66,7 +66,7 @@
 		
 		<div style="clear: both;"></div>
 	
-		<div id="footer">// 80dots</div>
+		<div id="footer"></div>
 
 	</div>
 
@@ -150,10 +150,15 @@ if(state==0)
 
 }
 
+function full_screen()
+{
+
+}
+
 function clear_all()
 {
- shadowing('container',0);
- shadowing('quest4',0);
+ shadowing('container',1);
+ shadowing('quest4',1);
  shadowing('quest5',1);
  shadowing('alarm',1);
  shadowing('fingerprint',1);

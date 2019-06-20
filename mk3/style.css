@@ -1,3 +1,8 @@
+#selector 
+{
+        cursor: none;
+}
+
 body
 {
 	background-color: #000000;
@@ -13,6 +18,16 @@ body
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+}
+
+#ventilator
+{
+        left:  float;
+        width: 100px;
+        margin-top:   20px;
+        margin-left:  40px;
+        margin-right: auto;
+        text-aligh:   center;
 }
 
 #fingerprint

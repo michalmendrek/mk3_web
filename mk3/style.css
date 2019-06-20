@@ -39,6 +39,16 @@ body
 	text-align: center;
 }
 
+#fingerscan
+{
+        width: 996px;
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+}
+
+
 #container
 {
 	width: 996px;

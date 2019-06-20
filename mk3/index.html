@@ -16,10 +16,9 @@
 	<div STYLE="position:absolute; left:40px; top:100px;" id="quest4"><img src="img/4_p.jpg" height="200" width="200" /></div>
 	<div STYLE="position:absolute; left:40px; top:100px;" id="quest5"><img src="img/5_p.jpg" height="200" width="200" /></div>
 
-	<video autoplay loop STYLE="position:absolute; left:500px; top:400px;" id="fingerprint" width="200" height="200"><source  src="img/fingerprint.mp4" type="video/mp4" /></video>
-	<video STYLE="position:absolute; left:500px; top:200px;" id="fingerscan" ><source src="img/fingerscan.mp4"  type="video/mp4" /></video>
-
-	<div STYLE="position:absolute; left:40px; top:100px;" id="ventilator"  ><a href="javascript:send_mqtt('display_ventilator/control','0')"><img src="img/venticon.png" width="200" height="200" /></div>
+	<div   STYLE="position:absolute; left:500px; top:400px;" id="fingerprint" width="200" height="200"><a href="javascript:send_mqtt('display_fingers/control','1')"> <img  src="img/Finger.gif"  /></div>
+	<video STYLE="position:absolute; left:500px; top:200px;" id="fingerscan"><source src="img/fingerscan.mp4"  type="video/mp4" /></video>
+	<div   STYLE="position:absolute; left:40px;  top:100px;" id="ventilator"><a href="javascript:send_mqtt('display_ventilator/control','0')"><img src="img/venticon.png" width="200" height="200" /></div>
 
 	<div id="container">
 	
@@ -187,7 +186,7 @@ function clear_all()
  shadowing('quest4',1);
  shadowing('quest5',1);
  shadowing('alarm',1);
- shadowing('fingerprint',1);
+ shadowing('fingerprint',0);
  shadowing('fingerscan',1);
  shadowing('livestream',1);
  shadowing('ventilator',1);

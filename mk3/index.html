@@ -13,8 +13,9 @@
 <body  onload="clear_all()">
 
 	<div STYLE="position:absolute; left:320px; top:10px;" id="alarm" ><img  src="img/alert.gif" /></div>
-	<div STYLE="position:absolute; left:40px; top:100px;" id="quest4"><img src="img/4_p.jpg" height="200" width="200" /></div>
-	<div STYLE="position:absolute; left:40px; top:100px;" id="quest5"><img src="img/5_p.jpg" height="200" width="200" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="quest5"><img src="img/4_p.jpg" height="200" width="200" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="quest4"><img src="img/5_p.jpg" height="200" width="200" /></div>
+        <div STYLE="position:absolute; left:40px; top:100px;" id="clockhint"><img src="img/clockhint.jpg" height="200" width="200" /></div>
 
 	<div   STYLE="position:absolute; left:500px; top:400px;" id="fingerprint" width="200" height="200"><a href="javascript:send_mqtt('display_fingers/control','1')"> <img  src="img/Finger.gif"  /></div>
 	<video STYLE="position:absolute; left:500px; top:200px;" id="fingerscan"><source src="img/fingerscan.mp4"  type="video/mp4" /></video>
@@ -201,6 +202,7 @@ function clear_all()
  shadowing('movie1',1);
  shadowing('movie2',1);
  shadowing('movie3',1);
+ shadowing('clockhint',1);
 
 }
   setInterval(read_message,1000);

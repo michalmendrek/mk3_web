@@ -77,6 +77,7 @@ var client = mqtt.connect('ws://192.168.2.10:1900')
  client.subscribe("hide")
  client.subscribe("unhide")
  client.subscribe("fingers");
+ client.subscribe("clearing/control");
  var napis="";
  var i=0;
 
@@ -106,6 +107,13 @@ var client = mqtt.connect('ws://192.168.2.10:1900')
 																	play_video2();
                                                                                                                                   }
 
+												}
+									    if(topic=="clearing/control")
+												{
+													if(payload=="clear")
+																{
+																	clear_all();
+																}
 												}
 
 						  			  }
@@ -186,7 +194,7 @@ function clear_all()
  shadowing('quest4',1);
  shadowing('quest5',1);
  shadowing('alarm',1);
- shadowing('fingerprint',0);
+ shadowing('fingerprint',1);
  shadowing('fingerscan',1);
  shadowing('livestream',1);
  shadowing('ventilator',1);

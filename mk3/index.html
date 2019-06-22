@@ -18,6 +18,11 @@
 	<div STYLE="position:absolute; left:40px; top:100px;" id="quest4"><img src="img/5_p.jpg" height="200" width="200" /></div>
         <div STYLE="position:absolute; left:40px; top:100px;" id="clockhint"><img src="img/clockhint.jpg" height="200" width="200" /></div>
 
+	<div STYLE="position:absolute; left:40px; top:100px;" id="2os"><img src="img/2_os.jpg" height="200" width="200" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="pi"><img src="img/pi.jpg" height="200" width="200" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="li"><img src="img/li.jpg" height="200" width="200" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="il"><img src="img/il.jpg" height="200" width="200" /></div>
+
 	<div   STYLE="position:absolute; left:500px; top:400px;" id="fingerprint" width="200" height="200"><a href="javascript:send_mqtt('display_fingers/control','1')"> <img  src="img/Finger.gif"  /></div>
 	<video STYLE="position:absolute; left:500px; top:200px;" id="fingerscan"><source src="img/fingerscan.mp4"  type="video/mp4" /></video>
 	<div   STYLE="position:absolute; left:40px;  top:100px;" id="ventilator"><a href="javascript:send_mqtt('display_ventilator/control','0')"><img src="img/venticon.png" width="200" height="200" /></div>
@@ -205,6 +210,10 @@ function clear_all()
  shadowing('movie3',1);
  shadowing('clockhint',1);
  shadowing('powerup',1);
+ shadowing('pi',1);
+ shadowing('li',1);
+ shadowing('il',1);
+ shadowing('2os',1);
 
 }
   setInterval(read_message,1000);

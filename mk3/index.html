@@ -88,21 +88,19 @@ var client = mqtt.connect('ws://192.168.2.10:1900')
  var napis="";
  var i=0;
 
-  function read_message(){
+  function read_message()
+	{
 
-			  client.on("message", function (topic, payload) {
+	   client.on("message", function (topic, payload) {
  
-									   if(topic=="hide")
-												{
-													var x = document.getElementById(payload);
-													x.style.display = "none";
-													
-												}
-									   if(topic=="unhide")
-												{
-													var x = document.getElementById(payload);
-													x.style.display = "block";
-												}
+							     if(topic=="hide"){
+										var x = document.getElementById(payload);
+										x.style.display = "none";	
+										}
+							     if(topic=="unhide"){
+										var x = document.getElementById(payload);
+										x.style.display = "block";
+										 }
 									   if(topic=="fingers")
 												{
 													if(payload=="fingerprint")

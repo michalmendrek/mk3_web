@@ -11,8 +11,48 @@
    <source src="videos/Final1.F.mp4" type="video/mp4">
 </video>
 
+<script src="./browserMqtt.js"></script>
+
 
 <script>
+
+var client = mqtt.connect('ws://192.168.2.10:1900')
+ client.subscribe("lobby/hide")
+ client.subscribe("lobby/unhide");
+ client.subscribe("lobby/control");
+
+function read_message()
+{
+	 client.on("message",function(topic, payload) {
+								if(topic=="lobby/hide"){
+                                                                                        var x = document.getElementById(payload);
+                                                                                        x.style.display = "none";
+
+                                                                                       }
+								 if(topic=="lobby/unhide"){
+                                                                                        var x = document.getElementById(payload);
+                                                                                        x.style.display = "block";
+                                                                                            }
+								if(topic=="lobby/control"){
+                                                                                            if(payload=="clear")
+                                                                                                    		{
+                                                                                                                  clear_all();
+                                                                                                                 }
+                                                                                            if(payload=="play")
+                                                                                                               {
+                                                                                                                  shadowing('vid',0);
+														  shadowing('live',0);
+														  play_video();
+                                                                                                                }
+                                                                                            }
+
+
+
+
+
+						        }
+)
+}
 
 function shadowing(name,state)
 {
@@ -41,11 +81,12 @@ function play_video()
 
 function clear_all()
 {
-  shadowing('vid',0);
-  shadowing('live',0);
+  shadowing('vid',1);
+  shadowing('live',1);
 
  
 }
+   setInterval(read_message,1000);
 </script>
 
 </body>

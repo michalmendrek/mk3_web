@@ -18,7 +18,7 @@
 	<div STYLE="position:absolute; left:40px; top:100px;" id="quest4"><img src="img/li.jpg" height="200" width="200" /></div>
         <div STYLE="position:absolute; left:40px; top:100px;" id="clockhint"><img src="img/clockhint.jpg" height="200" width="200" /></div>
 
-	<div STYLE="position:absolute; left:40px; top:100px;" id="2os"><img src="img/2_os.jpg" height="200" width="200" /></div>
+	<div STYLE="position:absolute; left:40px; top:100px;" id="2os"><a href="javascript:grate_open()"><img src="img/2_os.jpg" height="200" width="200" /></div>
 	<div STYLE="position:absolute; left:40px; top:100px;" id="pi"><img src="img/pi.jpg" height="200" width="200" /></div>
 	<div STYLE="position:absolute; left:40px; top:100px;" id="li"><img src="img/li.jpg" height="200" width="200" /></div>
 	<div STYLE="position:absolute; left:40px; top:100px;" id="il"><img src="img/il.jpg" height="200" width="200" /></div>
@@ -130,6 +130,13 @@ var client = mqtt.connect('ws://192.168.2.10:1900')
 }
 
 
+
+function grate_open()
+{
+
+  send_mqtt("callback_engine","grate_open");
+  shadowing('2os',1);  
+}
 
 
 function send_mqtt(temat, wiad)

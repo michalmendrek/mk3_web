@@ -131,14 +131,6 @@ var client = mqtt.connect('ws://192.168.2.10:1900')
 
 
 
-function grate_open()
-{
-
-  send_mqtt("callback_engine","grate_open");
-  shadowing('2os',1);  
-}
-
-
 function send_mqtt(temat, wiad)
   {
    var client = mqtt.connect('ws://192.168.2.10:1900')
@@ -201,6 +193,14 @@ function play_video2()
  var vid2 = document.getElementById("fingerscan");
  vid2.play();
 }
+
+function grate_open()
+{
+
+  send_mqtt("callback_engine/control","grate_open");
+  shadowing('2os',1);
+}
+
 
 function clear_all()
 {

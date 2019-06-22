@@ -13,10 +13,10 @@
 <body>
 <nav>
 
-  <button type="button" onclick="openMenuModal();">Start Gry</button>
-  <button type="button" onclick="openMenuModal();">Stop  Gry</button>
-  <button type="button" onclick="openMenuModal();">Tryb Serwisowy</button>
-  <button type="button" onclick="openMenuModal();">Reset Systemu</button>
+  <button type="button" onclick="openMenuModal('0');">Start Gry</button>
+  <button type="button" onclick="openMenuModal('2');">Przygotowanie do Startu</button>
+  <button type="button" onclick="openMenuModal('1');">Tryb Serwisowy</button>
+
 
 </nav>
 
@@ -43,7 +43,33 @@
 <h1>Pokój Skrytka</h1>
 </div>
 
+<script src="./browserMqtt.js"></script>
+<script>
 
+var client = mqtt.connect('ws://192.168.2.10:1900')
+
+function openMenuModal(stan)
+{
+ send_mqtt("service/control",stan);
+
+
+}
+
+
+
+function send_mqtt(temat, wiad)
+  {
+   var client = mqtt.connect('ws://192.168.2.10:1900')
+   client.on("connect", function() {
+                                      client.publish(temat, wiad)
+                                      client.on("packetsend", client.end());
+                                      client.end()
+                                    })
+
+  }
+
+
+</script>
 
 	
 

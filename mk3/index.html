@@ -25,7 +25,7 @@
 
 	<div   STYLE="position:absolute; left:500px; top:400px;" id="fingerprint" width="200" height="200"><a href="javascript:send_mqtt('display_fingers/control','1')"> <img  src="img/Finger.gif"  /></div>
 	<video STYLE="position:absolute; left:500px; top:200px;" id="fingerscan"><source src="img/fingerscan.mp4"  type="video/mp4" /></video>
-	<div   STYLE="position:absolute; left:40px;  top:100px;" id="ventilator"><a href="javascript:send_mqtt('display_ventilator/control','0')"><img src="img/venticon.png" width="200" height="200" /></div>
+	<div   STYLE="position:absolute; left:40px;  top:100px;" id="ventilator"><a href="javascript:ventilator_push()"><img src="img/venticon.png" width="200" height="200" /></div>
 
 	<div id="container">
 	
@@ -197,6 +197,12 @@ function grate_open()
 
   send_mqtt("callback_engine/control","grate_open");
   shadowing('2os',1);
+}
+
+function ventilator_push()
+{
+  send_mqtt('display_ventilator/control','0');
+  shadowing('ventilator',1);
 }
 
 

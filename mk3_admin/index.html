@@ -24,7 +24,7 @@
 
 <div id="lobby">
 <h1>Lobby</h1>
-<p>USB Dekoder <input type="checkbox"></p>
+<p>USB Dekoder <input type="checkbox" id="usb"></p>
 <p>Drzwi na korytarz <input type="checkbox" disabled="true"><input type="checkbox"></p>
 <p>Czujka Ruchu <input type="checkbox" disabled="true"></p>
 </div>
@@ -32,8 +32,8 @@
 <div id="korytarz">
 <h1>Korytarz</h1>
 <p>Czujka ruchu	<input type="checkbox" disabled="true"><p>
-<p>Kluczyk		<input type="checkbox"><p>
-<p>JackJack		<input type="checkbox"><p>
+<p>Kluczyk		<input type="checkbox" id="keybox"><p>
+<p>JackJack		<input type="checkbox" id="jack"><p>
 <p>Duży Guzik	<input type="checkbox"><p>
 </div>
 
@@ -49,6 +49,11 @@
 <script>
 
 var client = mqtt.connect('ws://192.168.2.10:1900')
+client.subscribe("usb/state")
+client.subscribe("keybox/state")
+client.subscribe("jack/state")
+
+
 
 function openMenuModal(stan)
 {
@@ -56,6 +61,7 @@ function openMenuModal(stan)
 
  send_mqtt("group/count",number);
  send_mqtt("service/control",stan);
+
  
 
 }
@@ -73,6 +79,22 @@ function send_mqtt(temat, wiad)
 
   }
 
+
+function read_messages()
+{
+  client.on("message", function (topic,payload) {
+		
+	if(topic=="usb/state")    {if(payload=="0") { document.getElementById("usb").checked = false;} if(payload=="1") { document.getElementById("usb").checked = true;}}
+	if(topic=="keybox/state") {if(payload=="0") { document.getElementById("keybox").checked = false;} if(payload=="1") { document.getElementById("keybox").checked = true;}}
+        if(topic=="jack/state")   {if(payload=="0") { document.getElementById("jack").checked = false;} if(payload=="1") { document.getElementById("jack").checked = true;}}                                          
+
+						}
+	   )
+
+
+}
+
+setInterval(read_messages,1000);
 
 </script>
 
